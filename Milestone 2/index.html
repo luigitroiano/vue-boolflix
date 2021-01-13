@@ -23,21 +23,37 @@
         </div>
         <!-- search navbar -->
         <div id="search">
-          <input type="search" name="" id="search_bar" placeholder="Cerca" v-model="search">
-          <button @click="findFilm(search)" id="search_btn"><i class="fas fa-search"></i></button>
+          <input @keyup.enter="findFilmOrSeries(search)" type="search" name="" id="search_bar" placeholder="Cerca" v-model="search">
+          <button @click="findFilmOrSeries(search)" id="search_btn"><i class="fas fa-search"></i></button>
         </div>
       </nav>
 
       <!-- main body -->
       <main id="main_corp">
         <div class="container cds-container d_flex">
-          <div class="film" v-for="film in catalogue">
-            <img :src="film.poster_path" alt="copertina film">
+          <div class="film" v-for="film in catalogueMovie">
+            <img class="copertina_film" :src=`https://image.tmdb.org/t/p/w200${film.poster_path}` alt="copertina film">
             <ul>
               <li class="title">Titolo: {{film.title}}</li>
               <li class="original_title">Titolo originale: {{film.original_title}}</li>
-              <li class="language">Lingua originale: {{film.original_language}}</li>
-              <li class="vote">Voto: {{film.vote_average}}</li>
+              <li class="language">Lingua originale: <img :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` :alt=`${film.original_language}`></li>
+              <li class="vote">Voto: <i v-for="full in film.vote_average" class="fas fa-star"></i><i v-for="empty in (5-film.vote_average)" class="far fa-star"></i></li>
+            </ul>
+          </div>
+        </div> 
+
+
+        <div class="container cds-container d_flex">
+          <div class="series" v-for="series in catalogueSeries">
+            <img class="copertina_serieTv" :src=`https://image.tmdb.org/t/p/w200${series.poster_path}` alt="copertina serie Tv">
+            <ul>
+              <li class="title">Titolo: {{series.name}}</li>
+              <li class="original_title">Titolo originale: {{series.original_title}}</li>
+              <li class="language">Lingua originale: <img
+                  :src=`https://www.countryflags.io/${series.original_language}/flat/64.png` :alt=`${series.original_language}`>
+              </li>
+              <li class="vote">Voto: <i v-for="full in series.vote_average" class="fas fa-star"></i><i
+                  v-for="empty in (5-series.vote_average)" class="far fa-star"></i></li>
             </ul>
           </div>
         </div>

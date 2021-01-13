@@ -49,7 +49,7 @@ ul li{
   flex-wrap: wrap;
   padding: 100px 0;
 }
-.film {
+.film, .series {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -60,5 +60,8 @@ ul li{
   height: 360px;
   background: rgb(46, 58, 70);
   text-align: center;
+}
+.copertina_film, .copertina_serieTv{
+  height: 200px;
 }
 /* /main */
