@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/b1c0bf61f1.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- header -->
+      <nav class="navbar d_flex">
+        <!-- logo navbar -->
+        <div id="logo">
+          <img class="logo" src="./assets/img/c072857f28ffed69c9266a55183f4c20.png" alt="logo boolflix">
+        </div>
+        <!-- search navbar -->
+        <div id="search">
+          <input @keyup.enter="findFilmOrSeries(search)" type="search" name="" id="search_bar" placeholder="Cerca" v-model="search">
+          <button @click="findFilmOrSeries(search)" id="search_btn"><i class="fas fa-search"></i></button>
+        </div>
+      </nav>
+
+      <!-- main body -->
+      <main id="main_corp">
+        <div class="container cds-container d_flex">
+          <div class="film" v-for="film in catalogueMovie">
+            <img class="copertina_film" :src=`https://image.tmdb.org/t/p/w200${film.poster_path}` alt="copertina film">
+            <ul>
+              <li class="title">Titolo: {{film.title}}</li>
+              <li class="original_title">Titolo originale: {{film.original_title}}</li>
+              <li class="language">Lingua originale: <img :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` :alt=`${film.original_language}`></li>
+              <li class="vote">Voto: <i v-for="full in film.vote_average" class="fas fa-star"></i><i v-for="empty in (5-film.vote_average)" class="far fa-star"></i></li>
+            </ul>
+          </div>
+        </div> 
+
+
+        <div class="container cds-container d_flex">
+          <div class="series" v-for="series in catalogueSeries">
+            <img class="copertina_serieTv" :src=`https://image.tmdb.org/t/p/w200${series.poster_path}` alt="copertina serie Tv">
+            <ul>
+              <li class="title">Titolo: {{series.name}}</li>
+              <li class="original_title">Titolo originale: {{series.original_title}}</li>
+              <li class="language">Lingua originale: <img
+                  :src=`https://www.countryflags.io/${series.original_language}/flat/64.png` :alt=`${series.original_language}`>
+              </li>
+              <li class="vote">Voto: <i v-for="full in series.vote_average" class="fas fa-star"></i><i
+                  v-for="empty in (5-series.vote_average)" class="far fa-star"></i></li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- js -->
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
