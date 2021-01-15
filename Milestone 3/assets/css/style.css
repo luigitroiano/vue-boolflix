@@ -3,12 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  font-family: 'Roboto', sans-serif;
+}
 /* utility class */
 .d_flex{
   display: flex;
 }
 ul li{
   list-style: none;
+}
+li strong{
+  text-transform: uppercase;
+  color: #E50916;
 }
 /* /utility class */
 /* navbar */
@@ -39,9 +46,7 @@ ul li{
   background-color: #4D4D4D;
 }
 .container{
-  width: 1070px;
   height: 100%;
-  margin: 0 auto;
 }
 .cds-container {
   justify-content: center;
@@ -50,18 +55,39 @@ ul li{
   padding: 100px 0;
 }
 .film, .series {
+  height: 450px;
+  width: 282px;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
-  flex-basis: 200px;
-  padding: 20px;
-  margin: 10px 20px;
-  height: 360px;
-  background: rgb(46, 58, 70);
-  text-align: center;
+  margin: 15px 8px;
+  border: 2px solid whitesmoke;
+  overflow-y: scroll;
+  color: aliceblue;
+  background-color: black;
 }
 .copertina_film, .copertina_serieTv{
-  height: 200px;
+  height: 446px;
+  width: 278px;
+  z-index: 2;
+  opacity: 1;
+  transition: 0.2s ease-out;
+}
+.film > img,.series > img{
+  position: absolute;
+}
+.film ul,.series ul{
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 8px;
+}
+.copertina_film:hover,.copertina_serieTv:hover{
+  opacity: 0;
+}
+.vote i{
+  color: #FBCC0F;
+}
+.language{
+  text-align: center;
 }
 /* /main */
